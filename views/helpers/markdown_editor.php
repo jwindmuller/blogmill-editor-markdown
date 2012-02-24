@@ -13,7 +13,7 @@ class MarkdownEditorHelper extends AppHelper {
     }
 
     public function transformContent($html) {
-        $md = new Markdownify(false, false, false);
+        $md = new Markdownify();
         $html =  $md->parseString($html);
         return $html;
     }
