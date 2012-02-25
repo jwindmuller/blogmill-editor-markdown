@@ -289,7 +289,7 @@ class Markdownify {
           if ($this->parser->isStartTag) {
             $this->flushLinebreaks();
           }
-          if ($this->skipConversion) {
+          if ($this->skipConversion === true) {
             $this->isMarkdownable(); # update notConverted
             $this->handleTagToText();
             continue;
