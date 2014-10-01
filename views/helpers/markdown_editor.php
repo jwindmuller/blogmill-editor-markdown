@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor', 'Markdown.Markdownify');
+use Markdownify as MD;
 class MarkdownEditorHelper extends AppHelper {
 	
 	public $helpers = array('Html', 'Javascript');
@@ -13,7 +13,8 @@ class MarkdownEditorHelper extends AppHelper {
     }
 
     public function transformContent($html) {
-        $md = new Markdownify();
+        App::import('Vendor', 'Markdown.Markdownify', array('file' => 'ConverterExtra.inc.php'));
+        $md = new MD\ConverterExtra();
         $html =  $md->parseString($html);
         return $html;
     }
