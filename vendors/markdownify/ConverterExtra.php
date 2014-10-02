@@ -495,7 +495,7 @@ class ConverterExtra extends Converter
         /** TODO: custom markdown-extra options, e.g. titles & classes **/
         // <sup id="fnref:..."><a href"#fn..." rel="footnote">...</a></sup>
         // => <fnref target="..." />
-        $html = preg_replace('@<sup id="fnref:([^"]+)">\s*<a href="#fn:\1" rel="footnote">\s*\d+\s*</a>\s*</sup>@Us', '<fnref target="$1" />', $html);
+        $html = preg_replace('@<sup id="fnref:([^"]+)" rel="footnote">\s*<a href="#fn:\1">\s*\d+\s*</a>\s*</sup>@Us', '<fnref target="$1" />', $html);
         // <div class="footnotes">
         // <hr />
         // <ol>
@@ -510,7 +510,7 @@ class ConverterExtra extends Converter
         //   <fn name="...">...</fn>
         //   ...
         // </footnotes>
-        $html = preg_replace_callback('#<div class="footnotes">\s*<hr />\s*<ol>\s*(.+)\s*</ol>\s*</div>#Us', array(&$this, '_makeFootnotes'), $html);
+        $html = preg_replace_callback('#<hr />\s*<ol>\s*(.+)\s*</ol>\s*#Us', array(&$this, '_makeFootnotes'), $html);
 
         return parent::parseString($html);
     }
@@ -531,7 +531,7 @@ class ConverterExtra extends Converter
         // </li>
         // => <fn name="1">...</fn>
         // remove footnote link
-        $fns = preg_replace('@\s*(&#160;\s*)?<a href="#fnref:[^"]+" rev="footnote"[^>]*>&#8617;</a>\s*@s', '', $matches[1]);
+        $fns = preg_replace('@\s*(&#160;\s*)?<a href="#fnref:[^"]+" rev="footnote"[^>]*>[^<]*</a>\s*@s', '', $matches[1]);
         // remove empty paragraph
         $fns = preg_replace('@<p>\s*</p>@s', '', $fns);
         // <li id="fn:1">...</li> -> <footnote nr="1">...</footnote>

@@ -2965,7 +2965,7 @@ abstract class _MarkdownExtra_TmpImpl extends \Michelf\Markdown {
 			if ($this->fn_backlink_class != "") {
 				$class = $this->fn_backlink_class;
 				$class = $this->encodeAttribute($class);
-				$attr .= " class=\"$class\"";
+				$attr .= " class=\"$class\" rev=\"footnote\"";
 			}
 			if ($this->fn_backlink_title != "") {
 				$title = $this->fn_backlink_title;
@@ -3046,7 +3046,7 @@ abstract class _MarkdownExtra_TmpImpl extends \Michelf\Markdown {
 			$node_id = $this->encodeAttribute($node_id);
 			
 			return
-				"<sup id=\"fnref$ref_count_mark:$node_id\">".
+				"<sup id=\"fnref$ref_count_mark:$node_id\" rel=\"footnote\">".
 				"<a href=\"#fn:$node_id\"$attr>$num</a>".
 				"</sup>";
 		}

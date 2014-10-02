@@ -15,7 +15,7 @@ class MarkdownEditorHelper extends AppHelper {
     public function transformContent($html) {
         App::import('Vendor', 'Markdown.Markdownify', array('file' => 'ConverterExtra.inc.php'));
         $md = new MD\ConverterExtra();
-        $html =  $md->parseString($html);
+        $html = $md->parseString($html);
         return $html;
     }
 }
